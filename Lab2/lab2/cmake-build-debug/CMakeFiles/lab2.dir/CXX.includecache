@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Maria/Desktop/lab2/AF.h
+iostream
+-
+vector
+-
+string
+-
+set
+-
+Transition.h
+C:/Users/Maria/Desktop/lab2/Transition.h
+
+C:/Users/Maria/Desktop/lab2/Transition.h
+string
+-
+
+C:/Users/Maria/Desktop/lab2/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+vector
+-
+AF.h
+C:/Users/Maria/Desktop/lab2/AF.h
+
