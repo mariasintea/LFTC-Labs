@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Maria/Desktop/lab2/AF.cpp" "C:/Users/Maria/Desktop/lab2/cmake-build-debug/CMakeFiles/lab2.dir/AF.cpp.obj"
-  "C:/Users/Maria/Desktop/lab2/Transition.cpp" "C:/Users/Maria/Desktop/lab2/cmake-build-debug/CMakeFiles/lab2.dir/Transition.cpp.obj"
-  "C:/Users/Maria/Desktop/lab2/main.cpp" "C:/Users/Maria/Desktop/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.obj"
+  "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/AF.cpp" "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug/CMakeFiles/lab2.dir/AF.cpp.obj"
+  "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/Transition.cpp" "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug/CMakeFiles/lab2.dir/Transition.cpp.obj"
+  "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/main.cpp" "C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug/CMakeFiles/lab2.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")
 

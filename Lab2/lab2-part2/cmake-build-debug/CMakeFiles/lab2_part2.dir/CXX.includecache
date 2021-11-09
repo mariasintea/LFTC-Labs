@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Maria/Desktop/lab2/AF.h
+C:/Users/Maria/Desktop/lab2-part2/AF.h
 iostream
 -
 vector
@@ -16,21 +16,23 @@ string
 set
 -
 Transition.h
-C:/Users/Maria/Desktop/lab2/Transition.h
+C:/Users/Maria/Desktop/lab2-part2/Transition.h
 
-C:/Users/Maria/Desktop/lab2/Transition.h
+C:/Users/Maria/Desktop/lab2-part2/Transition.h
 string
 -
 
-C:/Users/Maria/Desktop/lab2/main.cpp
-iostream
--
+C:/Users/Maria/Desktop/lab2-part2/main.cpp
 fstream
+-
+iostream
 -
 string
 -
 vector
 -
+map
+-
 AF.h
-C:/Users/Maria/Desktop/lab2/AF.h
+C:/Users/Maria/Desktop/lab2-part2/AF.h
 

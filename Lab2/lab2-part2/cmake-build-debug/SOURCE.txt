@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    int x;
+    int s;
+    int i;
+    cin >> n;
+    i = 0;
+    s = 0;
+    while (i < n) {
+        cin >> x;
+        s = s + x;
+        i = i + 1;
+    }
+    cout << s;
+    return 0;
+}

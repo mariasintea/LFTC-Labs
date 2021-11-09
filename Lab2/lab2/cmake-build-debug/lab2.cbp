@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Maria/Desktop/lab2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab2">
-				<Option output="C:/Users/Maria/Desktop/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Maria/Desktop/lab2/cmake-build-debug"/>
+				<Option output="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
@@ -34,15 +34,15 @@
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 lab2"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 lab2"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="lab2/fast">
-				<Option output="C:/Users/Maria/Desktop/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Maria/Desktop/lab2/cmake-build-debug"/>
+				<Option output="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="msvc8"/>
@@ -57,49 +57,49 @@
 					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 lab2/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 lab2/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Maria/Desktop/lab2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Maria/Desktop/lab2/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Maria\Desktop\LFTC-Labs\Lab2\lab2\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/AF.cpp">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/AF.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/AF.h">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/AF.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/Transition.cpp">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/Transition.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/Transition.h">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/Transition.h">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/main.cpp">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/main.cpp">
 			<Option target="lab2"/>
 		</Unit>
-		<Unit filename="C:/Users/Maria/Desktop/lab2/CMakeLists.txt">
+		<Unit filename="C:/Users/Maria/Desktop/LFTC-Labs/Lab2/lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
