@@ -1,0 +1,125 @@
+%{
+#include <iostream>
+#include <utility>
+#include <algorithm>
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include <map>
+
+extern FILE *yyin;
+extern char *yytext;
+extern int yylex(void);
+
+using namespace std;
+
+vector<string> atoms = {"#include", "<iostream>", "using", "namespace", "std", "main()", "int",
+ "float", "Fractie", "if", "else", "while", "return", "cin", "cout", "+", "-", "*", "/", "%", "=", 
+ ">>", "<<", "==", ">=", "<=", ">", "<", "(", ")", "{", "}", ";", ",", "ID", "CONST", "cattimp", "executa", "sfcattimp"};
+
+map<string, int> constants;
+map<string, int> identifiers;
+vector<pair<int, int>> fip;
+bool error = false;
+
+void add_constant(string word){
+	constants.insert(make_pair(word, constants.size());
+	auto it = find(atoms.begin(), atoms.end(), "CONST");
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, constants[word]));
+}
+
+void add_identifier(string word){
+	identifiers.insert(make_pair(word, identifiers.size()));
+	auto it = find(atoms.begin(), atoms.end(), "ID");
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, identifiers[word]));
+}
+
+void add_atom(string word){
+	auto it = find(atoms.begin(), atoms.end(), word);
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, -1));
+}
+
+void printResults(){
+	if (error)
+		cout << "Lexical error!\n";
+	else{
+		cout << "Constante:\n";
+		for(auto con: constants)
+			cout << con.first << " " << con.second << "\n";
+		cout << "Identificatori:\n";
+		for(auto id: identifiers)
+			cout << id.first << " " << id.second << "\n";
+		cout << "FIP:\n";
+		for(auto elem: fip)
+			if (elem.second == -1)
+				cout << elem.first << " - \n";
+			else
+				cout << elem.first << " " << elem.second << "\n";
+	}
+}
+%}
+
+%option noyywrap
+NUMBER 0|[\+|-]?[1-9][0-9]*
+FRACTIE Fractie(0|[1-9][0-9]*, 0|[1-9][0-9]*)
+FLOAT 0|[1-9][0-9]*\.[0-9]*
+ID [a-z]{1,256}
+%%
+{NUMBER} add_constant(yytext);
+{FLOAT} add_constant(yytext);
+\#include add_atom(yytext);
+\<iostream> add_fip(yytext);
+using add_fip(yytext);
+namespace add_fip(yytext);
+std add_fip(yytext);
+main\(\) add_fip(yytext);
+cin add_fip(yytext);
+cout add_fip(yytext);
+if add_fip(yytext);
+else add_fip(yytext);
+while add_fip(yytext);
+return add_fip(yytext);
+int add_fip(yytext);
+float add_fip(yytext);
+Fractie add_fip(yytext);
+cattimp add_fip(yytext);
+executa add_fip(yytext);
+sfcattimp add_fip(yytext);
+\+ add_fip(yytext);
+\- add_fip(yytext);
+\% add_fip(yytext);
+\* add_fip(yytext);
+\/ add_fip(yytext);
+\= add_fip(yytext);
+\>> add_fip(yytext);
+\<< add_fip(yytext);
+\== add_fip(yytext);
+\>= add_fip(yytext);
+\<= add_fip(yytext);
+\< add_fip(yytext);
+\> add_fip(yytext);
+\( add_fip(yytext);
+\) add_fip(yytext);
+\{ add_fip(yytext);
+\} add_fip(yytext);
+\; add_fip(yytext);
+\, add_fip(yytext);
+{ID} add_identifier(yytext);
+[ \t\n]+ ;
+. error = true;
+%%
+
+int main(int argc,char  **argv){
+    ++argv;--argc;
+    if(argc>0) yyin = fopen(argv[0],"r");
+    else yyin = stdin;
+
+    yylex();
+
+    printResults();
+
+    return 0;
+}

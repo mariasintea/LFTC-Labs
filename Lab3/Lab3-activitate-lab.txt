@@ -1,0 +1,5 @@
+Elemente lexicale: 
+- cuvinte cheie: cattimp, executa, sfcattimp
+- identificatori: ca si in limbajul original
+- constante: ca si in limbajul original
+- operatori: ca si in limbajul original
