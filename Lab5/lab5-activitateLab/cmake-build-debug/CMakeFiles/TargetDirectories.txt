@@ -1,0 +1,3 @@
+C:/Users/Maria/Desktop/lab5-activitateLab/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Maria/Desktop/lab5-activitateLab/cmake-build-debug/CMakeFiles/lab5_activitateLab.dir
+C:/Users/Maria/Desktop/lab5-activitateLab/cmake-build-debug/CMakeFiles/edit_cache.dir

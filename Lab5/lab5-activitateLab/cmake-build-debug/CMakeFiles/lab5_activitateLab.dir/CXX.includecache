@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Maria/Desktop/lab5-activitateLab/Grammar.cpp
+Grammar.h
+C:/Users/Maria/Desktop/lab5-activitateLab/Grammar.h
+
+C:/Users/Maria/Desktop/lab5-activitateLab/Grammar.h
+vector
+-
+set
+-
+string
+-
+
+C:/Users/Maria/Desktop/lab5-activitateLab/main.cpp
+iostream
+-
+vector
+-
+string
+-
+fstream
+-
+Grammar.h
+C:/Users/Maria/Desktop/lab5-activitateLab/Grammar.h
+
