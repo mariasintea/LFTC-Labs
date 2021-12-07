@@ -1,0 +1,95 @@
+%{
+    #include <string.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    extern int yylex();
+    extern int yyparse();
+    extern FILE *yyin;
+    extern int yylineno;  
+    extern char *yytext;
+    void yyerror(const char *s);
+%}
+
+%token CONSTANT
+%token INCLUDE
+%token IOSTREAM
+%token USING
+%token NAMESPACE
+%token STD
+%token MAIN
+%token CIN
+%token COUT
+%token IF
+%token ELSE
+%token WHILE
+%token CATTIMP
+%token EXECUTA
+%token SFCATTIMP
+%token RETURN
+%token INT
+%token FLOAT
+%token FRACTIE
+%token PLUS
+%token MINUS
+%token MODULO
+%token MULT
+%token DIV
+%token ASSIGN
+%token CINSIGN
+%token COUTSIGN
+%token EQ
+%token GE
+%token LE
+%token GT
+%token LT
+%token OPENROUNDPAR
+%token CLOSEDROUNDPAR
+%token OPENPAR
+%token CLOSEDPAR
+%token SEMICOL
+%token COMMA
+%token IDENTIFIER
+%%
+
+
+
+program : INCLUDE IOSTREAM USING NAMESPACE STD SEMICOL mainfunction;
+mainfunction: INT MAIN OPENPAR declarations instructions returninstr CLOSEDPAR | INT MAIN OPENPAR instructions return_instr CLOSEDPAR;
+declarations : declaration SEMICOL | declaration SEMICOL declarations;
+declaration : type IDENTIFIER;
+type : INT | FLOAT | FRACTIE;
+instructions : instruction | instruction instructions;
+instruction : assigninstr SEMICOL | readwrite SEMICOL | whileinstr | ifinstr | cattimpinstr;
+cattimpinstr : CATTIMP expression relation expression EXECUTA instructions SFCATTIMP;
+assigninstr : IDENTIFIER  ASSIGN expression;
+expression : IDENTIFIER | CONSTANT | expression operator IDENTIFIER | expression operator CONSTANT;
+operator : PLUS | MINUS | MODULO | MULT | DIV;
+readwrite : CIN CINSIGN IDENTIFIER | COUT COUTSIGN IDENTIFIER;
+ifinstr : IF OPENROUNDPAR expression relation expression CLOSEDROUNDPAR OPENPAR instructions CLOSEDPAR| IF OPENROUNDPAR expression relation expression CLOSEDROUNDPAR OPENPAR instructions CLOSEDPAR ELSE OPENPAR instructions CLOSEDPAR;
+relation : EQ | GE | LE | GT | LT;
+whileinstr : WHILE OPENROUNDPAR expression relation expression CLOSEDROUNDPAR OPENPAR instructions CLOSEDPAR;
+returninstr : RETURN CONSTANT SEMICOL;
+
+
+//
+%%
+
+int main(int argc, char *argv[]) {
+    ++argv, --argc;
+    if ( argc > 0 ){
+        yyin = fopen( argv[0], "r" );
+    }
+    else
+        yyin = stdin;
+    while (!feof(yyin)) {
+        yyparse();
+    }
+    printf("%s\n","The program is sintactically correct!!!");
+    return 0;
+}
+
+void yyerror(const char *s) {
+    fprintf(stderr, "%d: error: '%s' at '%s', yylval=%u\n", yylineno, s, yytext, yylval);
+    exit(1);
+}

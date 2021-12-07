@@ -1,0 +1,110 @@
+%{
+#include <iostream>
+#include <utility>
+#include <algorithm>
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include <map>
+#include "lab4.tab.h"
+
+using namespace std;
+
+vector<string> atoms = {"#include", "<iostream>", "using", "namespace", "std", "main()", "int",
+ "float", "Fractie", "if", "else", "while", "return", "cin", "cout", "+", "-", "*", "/", "%", "=", 
+ ">>", "<<", "==", ">=", "<=", ">", "<", "(", ")", "{", "}", ";", ",", "ID", "CONST", "cattimp", "executa", "sfcattimp"};
+
+map<string, int> constants;
+map<string, int> identifiers;
+vector<pair<int, int>> fip;
+bool error = false;
+
+void add_constant(string word){
+	constants.insert(make_pair(word, constants.size());
+	auto it = find(atoms.begin(), atoms.end(), "CONST");
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, constants[word]));
+}
+
+void add_identifier(string word){
+	identifiers.insert(make_pair(word, identifiers.size()));
+	auto it = find(atoms.begin(), atoms.end(), "ID");
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, identifiers[word]));
+}
+
+void add_atom(string word){
+	auto it = find(atoms.begin(), atoms.end(), word);
+	int index = it - atoms.begin();
+	fip.push_back(make_pair(index, -1));
+}
+
+void printResults(){
+	if (error)
+		cout << "Lexical error!\n";
+	else{
+		cout << "Constante:\n";
+		for(auto con: constants)
+			cout << con.first << " " << con.second << "\n";
+		cout << "Identificatori:\n";
+		for(auto id: identifiers)
+			cout << id.first << " " << id.second << "\n";
+		cout << "FIP:\n";
+		for(auto elem: fip)
+			if (elem.second == -1)
+				cout << elem.first << " - \n";
+			else
+				cout << elem.first << " " << elem.second << "\n";
+	}
+}
+%}
+
+%option noyywrap
+NUMBER 0|[\+|-]?[1-9][0-9]*
+FRACTIE Fractie(0|[1-9][0-9]*, 0|[1-9][0-9]*)
+FLOAT 0|[1-9][0-9]*\.[0-9]*
+ID [a-z]{1,256}
+%%
+{NUMBER} { add_constant(yytext); return CONSTANT; }
+{FLOAT} { add_constant(yytext); return CONSTANT; }
+\#include { add_atom(yytext); return INCLUDE; }
+\<iostream> { add_fip(yytext); return IOSTREAM; }
+using { add_fip(yytext); return USING; }
+namespace { add_fip(yytext); return NAMESPACE; }
+std { add_fip(yytext); return STD; }
+main\(\) { add_fip(yytext); return MAIN; }
+cin { add_fip(yytext); return CIN; }
+cout { add_fip(yytext); return COUT; }
+if { add_fip(yytext); return IF; }
+else { add_fip(yytext); return ELSE; }
+while { add_fip(yytext); return WHILE; }
+return { add_fip(yytext); return RETURN; }
+int { add_fip(yytext); return INT; }
+float { add_fip(yytext); return FLOAT; }
+Fractie { add_fip(yytext); return FRACTIE; }
+cattimp { add_fip(yytext); return CATTIMP; }
+executa { add_fip(yytext); return EXECUTA; }
+sfcattimp { add_fip(yytext); return SFCATTIMP; }
+\+ { add_fip(yytext); return PLUS; }
+\- { add_fip(yytext); return MINUS; }
+\% { add_fip(yytext); return MODULO; }
+\* { add_fip(yytext); return MULT; }
+\/ { add_fip(yytext); return DIV; }
+\= { add_fip(yytext); return ASSIGN; }
+\>> { add_fip(yytext); return CINSIGN; }
+\<< { add_fip(yytext); return COUTSIGN; }
+\== { add_fip(yytext); return EQ; }
+\>= { add_fip(yytext); return GE; }
+\<= { add_fip(yytext); return LE; }
+\< { add_fip(yytext); return LT; }
+\> { add_fip(yytext); return GT; }
+\( { add_fip(yytext); return OPENROUNDPAR; }
+\) { add_fip(yytext); return CLOSEDROUNDPAR; }
+\{ { add_fip(yytext); return OPENPAR; }
+\} { add_fip(yytext); return CLOSEDPAR; }
+\; { add_fip(yytext); return SEMICOL; }
+\, { add_fip(yytext); return COMMA; }
+{ID} { add_identifier(yytext); return IDENTIFIER; }
+[ \t\n]+ ;
+. error = true;
+%%
