@@ -1,0 +1,26 @@
+program
+    var id : integer ;
+    var id : integer ;
+    var id : real ;
+    var id : integer ;
+    var id : real ;
+    var id : integer ;
+    var id : real ;
+begin
+    read ( id ) ;
+    id := id + id * id - id % id / id ;
+    if ( id > id && id )
+    begin
+        write ( id + id - id ) ;
+        if ( id )
+        begin
+            write ( id ) ;
+            while ( id > id ) do
+            begin
+                id := id ;
+            end ;
+        end ;
+        id := id ;
+    end ;
+    write ( id ) ;
+end
