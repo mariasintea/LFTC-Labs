@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    int x;
+    int s;
+    int e;
+    cin >> n;
+    s = 0;
+    cin >> x;
+    s = s + x;
+    e = e + s * 2 - 1;
+    cout << s;
+    return 0;
+}

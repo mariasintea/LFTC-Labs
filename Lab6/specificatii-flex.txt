@@ -1,0 +1,253 @@
+%{
+#include <utility>
+#include <algorithm>
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include "lab4.tab.h"
+
+extern int yylex();
+extern int yyparse();
+extern FILE *yyin;
+void yyerror(const char *s);
+extern int yylineno;
+extern char *yytext;
+
+using namespace std;
+
+vector<string> atoms = {"#include", "<iostream>", "using", "namespace", "std", "main()", "int", "return", "cin", "cout"$ ">>", "<<", "{", "}", ";", ",", "ID", "CONST"};
+
+map<string, int> constants;
+map<string, int> identifiers;
+vector<pair<int, int>> fip;
+bool error = false;
+
+void add_atom(string word){
+        auto it = find(atoms.begin(), atoms.end(), word);
+        int index = it - atoms.begin();
+        fip.push_back(make_pair(index, -1));
+}
+
+void add_constant(string word){
+        constants.insert(make_pair(word, constants.size()));
+        auto it = find(atoms.begin(), atoms.end(), "CONST");
+        int index = it - atoms.begin();
+        fip.push_back(make_pair(index, constants[word]));
+}
+
+void add_identifier(string word){
+        identifiers.insert(make_pair(word, identifiers.size()));
+        auto it = find(atoms.begin(), atoms.end(), "ID");
+        int index = it - atoms.begin();
+        fip.push_back(make_pair(index, identifiers[word]));
+}
+
+void printResults(){
+    if (error)
+        cout << "Lexical error!\n";
+    else {
+        cout << "Constante:\n";
+        for(auto con: constants)
+            cout << con.first << " " << con.second << "\n";
+        cout << "Identificatori:\n";
+        for(auto id: identifiers)
+            cout << id.first << " " << id.second << "\n";
+        cout << "FIP:\n";
+        for(auto elem: fip)
+            if (elem.second == -1)
+                cout << elem.first << " - \n";
+            else
+                cout << elem.first << " " << elem.second << "\n";
+    }
+}
+
+string findInMap(map<string, int> givenMap, int val){
+    for (auto& it : givenMap) {
+        if (it.second == val) {
+            return it.first;
+
+        }
+    }
+}
+
+void printASM(){
+    cout << "bits 32\n";
+    cout << "global start\n\n";
+    cout << "extern exit\n";
+    cout << "import exit msvcrt.dll\n";
+    cout << "extern scanf\n";
+    cout << "import scanf msvcrt.dll\n";
+    cout << "extern printf\n";
+    cout << "import printf msvcrt.dll\n\n";
+    cout << "segment data use32 class=data\n";
+    for (auto id: identifiers)
+        cout << "\t" << id.first << " dd 0\n";
+    for (auto con: constants)
+        cout << "\tconst" << con.second << " equ " << con.first << "\n";
+    cout << "\t" << "format db '%d', 0\n";
+    cout << "\nsegment data use32 class=code\n";
+	cout << "\tstart:\n";
+    auto atom = fip.begin();
+    while (atoms[atom->first].compare("{") != 0 && atom != fip.end()){
+        atom++;
+    }
+    atom++;
+    while (atoms[atom->first].compare("return") != 0 && atom != fip.end()){
+        if (atoms[atom->first].compare("cin") == 0){
+           atom++;
+           atom++;
+           cout << "\t\tpush dword [" << findInMap(identifiers, atom->second) << "]\n";
+           cout << "\t\tpush dword format\n";
+           cout << "\t\tcall [scanf]\n";
+           cout << "\t\tadd esp, 4*2\n";
+           atom++;
+           atom++;
+           cout << "\n";
+        }
+        else
+           if (atoms[atom->first].compare("cout") == 0){
+                atom++;
+                atom++;
+                cout << "\t\tpush dword [" << findInMap(identifiers, atom->second) << "]\n";
+                cout << "\t\tpush dword format\n";
+                cout << "\t\tcall [printf]\n";
+                cout << "\t\tadd esp, 4*2\n";
+                atom++;
+                atom++;
+                cout << "\n";
+           }
+        else
+           if (atoms[atom->first].compare("int") == 0) {
+                atom++;
+                atom++;
+                atom++;
+           }
+        else
+           {
+                string leftVariable = findInMap(identifiers, atom->second);
+                atom++;
+                atom++;
+                bool hasMoreThanOneTerm = false;
+                if (atoms[atom->first].compare("ID") == 0) {
+                    cout << "\t\tmov eax, [" << findInMap(identifiers, atom->second) << "]\n";
+                }
+                else
+                    if (atoms[atom->first].compare("CONST") == 0) {
+                        cout << "\t\tmov eax, [const" << atom->second << "]\n";
+                    }
+                while (atoms[atom->first].compare(";") != 0) {
+                    if (atoms[atom->first].compare("+") == 0){
+                        atom++;
+                       if (atoms[atom->first].compare("ID") == 0) {
+                            cout << "\t\tmov ebx, [" << findInMap(identifiers, atom->second) << "]\n";
+                        }
+                        else
+                            if (atoms[atom->first].compare("CONST") == 0) {
+                                cout << "\t\tmov ebx, [const" << atom->second << "]\n";
+                            }
+                         cout << "\t\tadd eax, ebx\n";
+                    }
+                    else
+                        if (atoms[atom->first].compare("-") == 0){
+                            atom++;
+                            if (atoms[atom->first].compare("ID") == 0) {
+                                cout << "\t\tmov ebx, [" << findInMap(identifiers, atom->second) << "]\n";
+                            }
+                            else
+                                if (atoms[atom->first].compare("CONST") == 0) {
+                                    cout << "\t\tmov ebx, [const" << atom->second << "]\n";
+                                }
+                            cout << "\t\tsub eax, ebx\n";
+                        }
+                    else
+                        if (atoms[atom->first].compare("*") == 0){
+                            atom++;
+                            if (atoms[atom->first].compare("ID") == 0) {
+                                cout << "\t\tmov ebx, [" << findInMap(identifiers, atom->second) << "]\n";
+                            }
+                            else
+                                if (atoms[atom->first].compare("CONST") == 0) {
+                                    cout << "\t\tmov ebx, [const" << atom->second << "]\n";
+                                }
+                            cout << "\t\tmul ebx\n";
+                        }
+                    else
+                        if (atoms[atom->first].compare("/") == 0){
+                            atom++;
+                            if (atoms[atom->first].compare("ID") == 0) {
+                                cout << "\t\tmov ebx, [" << findInMap(identifiers, atom->second) << "]\n";
+                            }
+                            else
+                                if (atoms[atom->first].compare("CONST") == 0) {
+                                    cout << "\t\tmov ebx, [const" << atom->second << "]\n";
+                                }
+                            cout << "\t\tdiv ebx\n";
+                        }
+                     atom++;
+                }
+                cout << "\t\tmov [" << leftVariable << "], eax\n";
+                atom++;
+                cout << "\n";
+           }
+    }
+    cout << "\n\t\tpush dword 0\n";
+    cout << "\t\tcall [exit]\n";
+}
+
+%}
+
+%option noyywrap
+NUMBER 0|[\+|-]?[1-9][0-9]*
+ID [a-z]{1,256}
+%%
+{NUMBER} { add_constant(yytext); return CONSTANT; }
+\#include { add_atom(yytext); return INCLUDE; }
+\using { add_atom(yytext); return USING; }
+namespace { add_atom(yytext); return NAMESPACE; }
+std { add_atom(yytext); return STD; }
+main\(\) { add_atom(yytext); return MAIN; }
+cin { add_atom(yytext); return CIN; }
+cout { add_atom(yytext); return COUT; }
+return { add_atom(yytext); return RETURN; }
+int { add_atom(yytext); return INT; }
+\+ { add_atom(yytext); return PLUS; }
+\- { add_atom(yytext); return MINUS; }
+\* { add_atom(yytext); return MULT; }
+\/ { add_atom(yytext); return DIV; }
+\= { add_atom(yytext); return ASSIGN; }
+\>> { add_atom(yytext); return CINSIGN; }
+\<< { add_atom(yytext); return COUTSIGN; }
+\{ { add_atom(yytext); return OPENPAR; }
+\} { add_atom(yytext); return CLOSEDPAR; }
+\; { add_atom(yytext); return SEMICOL; }
+\, { add_atom(yytext); return COMMA; }
+{ID} { add_identifier(yytext); return IDENTIFIER; }
+[ \t\n]+ ;
+. error = true;
+%%
+
+
+int main(int argc, char *argv[]) {
+        ++argv, --argc;
+        if (argc > 0) {
+            yyin = fopen(argv[0], "r");
+        }
+        else
+            yyin = stdin;
+        while (!feof(yyin)) {
+            yyparse();
+        }
+        printf ("%s\n\nHere is the ASM code:\n\n", "The program is sintactically correct!");
+        printASM();
+        return 0;
+}
+
+void yyerror(const char *s) {
+        fprintf(stderr, "%d: error: '%s' at '%s'\n", yylineno, s, yytext);
+        exit(1);
+}
+
+
+

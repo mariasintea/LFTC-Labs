@@ -1,0 +1,55 @@
+%{
+    #include <string.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    extern int yylex();
+    extern int yyparse();
+    extern FILE *yyin;
+    extern int yylineno;
+    extern char *yytext;
+    void yyerror(const char *s);
+%}
+
+
+%token CONSTANT
+%token INCLUDE
+%token IOSTREAM
+%token USING
+%token NAMESPACE
+%token STD
+%token MAIN
+%token CIN
+%token COUT
+%token RETURN
+%token INT
+%token PLUS
+%token MINUS
+%token MULT
+%token DIV
+%token ASSIGN
+%token CINSIGN
+%token COUTSIGN
+%token OPENPAR
+%token CLOSEDPAR
+%token SEMICOL
+%token COMMA
+%token IDENTIFIER
+%%
+                                                  
+
+program : INCLUDE IOSTREAM USING NAMESPACE STD SEMICOL mainfunction;
+mainfunction : INT MAIN OPENPAR declarations instructions returninstr CLOSEDPAR | INT MAIN OPENPAR instructions returni$declarations : declaration SEMICOL | declaration SEMICOL declarations;
+declaration : type IDENTIFIER;
+type : INT;
+instructions : instruction | instruction instructions;
+instruction : assigninstr SEMICOL | readwrite SEMICOL;
+assigninstr : IDENTIFIER ASSIGN expression;
+expression : IDENTIFIER | CONSTANT | expression operator IDENTIFIER | expression operator CONSTANT;
+operator : PLUS | MINUS | MULT | DIV;
+readwrite : CIN CINSIGN IDENTIFIER | COUT COUTSIGN IDENTIFIER;
+returninstr : RETURN CONSTANT SEMICOL;
+
+
+//
+%%
