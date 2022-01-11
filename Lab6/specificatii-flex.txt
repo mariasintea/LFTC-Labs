@@ -85,7 +85,7 @@ void printASM(){
     for (auto id: identifiers)
         cout << "\t" << id.first << " dd 0\n";
     for (auto con: constants)
-        cout << "\tconst" << con.second << " equ " << con.first << "\n";
+        cout << "\tconst" << con.second << " dd " << con.first << "\n";
     cout << "\t" << "format db '%d', 0\n";
     cout << "\nsegment data use32 class=code\n";
 	cout << "\tstart:\n";
@@ -98,7 +98,7 @@ void printASM(){
         if (atoms[atom->first].compare("cin") == 0){
            atom++;
            atom++;
-           cout << "\t\tpush dword [" << findInMap(identifiers, atom->second) << "]\n";
+           cout << "\t\tpush dword " << findInMap(identifiers, atom->second) << "\n";
            cout << "\t\tpush dword format\n";
            cout << "\t\tcall [scanf]\n";
            cout << "\t\tadd esp, 4*2\n";
